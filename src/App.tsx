@@ -1,8 +1,9 @@
 import { Box } from '@mui/material';
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import BasicButton from './components/BasicButton';
 import ProgressBar from './components/ProgressBar';
 import TaskList from './components/TaskList';
+import getDoneRate from './util/getDoneRate';
 
 interface Task {
   title: string;
@@ -34,8 +35,12 @@ const tasks: Task[] = [
 ];
 
 function App() {
-  const [rate, setRate] = useState(10);
+  const [rate, setRate] = useState(0);
   const [visible, setVisible] = useState(false);
+
+  useEffect(() => {
+    setRate(Math.ceil((getDoneRate(tasks) / tasks.length) * 100));
+  }, []);
 
   const handleClick = () => {
     setVisible(!visible);

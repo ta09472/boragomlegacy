@@ -24,7 +24,7 @@ function Task<T>({ task }: Props<T>) {
         <Typography variant="body2">{task.desc}</Typography>
       </CardContent>
       <CardActions>
-        <Button size="small">
+        <Button variant="outlined" size="small">
           {task.isDone ? 'already done' : 'not done'}
         </Button>
       </CardActions>
