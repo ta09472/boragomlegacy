@@ -1,5 +1,11 @@
+import BasicButton from './components/Button';
+
 function App() {
-  return <div>hello2</div>;
+  return (
+    <div>
+      <BasicButton textContent="hello" />
+    </div>
+  );
 }
 
 export default App;

@@ -1,4 +1,4 @@
-module.exports = {
+const options = {
   semi: true,
   trailingComma: 'es5',
   singleQuote: true,
@@ -6,3 +6,5 @@ module.exports = {
   tabWidth: 2,
   endOfLine: 'auto'
 }
+
+module.exports = options
