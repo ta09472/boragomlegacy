@@ -4,7 +4,7 @@ const options = {
   singleQuote: true,
   printWidth: 80,
   tabWidth: 2,
-  endOfLine: 'auto'
-}
+  endOfLine: 'auto',
+};
 
-module.exports = options
+module.exports = options;
