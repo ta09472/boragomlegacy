@@ -1,5 +1,6 @@
-import { Paper, Grid } from '@mui/material';
+import { Paper, Card, Grid, Button } from '@mui/material';
 import Task from './Task';
+import AddOutlinedIcon from '@mui/icons-material/AddOutlined';
 
 interface Props<T> {
   visible: boolean;
@@ -7,6 +8,10 @@ interface Props<T> {
 }
 
 function TaskList<T>({ visible, tasks }: Props<T>) {
+  const handleClick = () => {
+    console.log('hello');
+  };
+
   if (!visible) return <></>;
 
   return (
@@ -17,10 +22,19 @@ function TaskList<T>({ visible, tasks }: Props<T>) {
             <Task task={value} />
           </Grid>
         ))}
+        <Grid item>
+          <Card sx={cardStyle}>
+            <Button sx={buttonStyle} onClick={handleClick}>
+              <AddOutlinedIcon />
+            </Button>
+          </Card>
+        </Grid>
       </Grid>
     </Paper>
   );
 }
+
+const cardStyle = { minWidth: '10vw', minHeight: '100%' };
 
 const style = {
   display: 'flex',
@@ -29,6 +43,15 @@ const style = {
   alignItems: 'center',
   width: '31vw',
   padding: '0.5vw',
+  marginTop: '2.5vh',
+};
+
+const buttonStyle = {
+  display: 'flex',
+  justifyContent: 'center',
+  alignItems: 'center',
+  width: '100%',
+  minHeight: '12.5vh',
 };
 
 export default TaskList;
