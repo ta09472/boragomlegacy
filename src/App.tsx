@@ -11,7 +11,7 @@ interface Task {
   isDone: boolean;
 }
 
-const tasks: Task[] = [
+const data: Task[] = [
   {
     title: 'apple',
     desc: '사과를 먹는다.',
@@ -37,6 +37,7 @@ const tasks: Task[] = [
 function App() {
   const [rate, setRate] = useState(0);
   const [visible, setVisible] = useState(false);
+  const [tasks, setTasks] = useState(data);
 
   useEffect(() => {
     setRate(Math.ceil((getDoneRate(tasks) / tasks.length) * 100));
@@ -46,11 +47,15 @@ function App() {
     setVisible(!visible);
   };
 
+  const addTask = (newTask: Task) => {
+    setTasks(() => [...tasks, newTask]);
+  };
+
   return (
     <Box sx={style}>
       <ProgressBar rate={rate} />
       <BasicButton textContent="hello" onClick={handleClick} />
-      <TaskList visible={visible} tasks={tasks} />
+      <TaskList visible={visible} tasks={tasks} addTask={addTask} />
     </Box>
   );
 }

@@ -5,11 +5,14 @@ import AddOutlinedIcon from '@mui/icons-material/AddOutlined';
 interface Props<T> {
   visible: boolean;
   tasks: T[];
+  addTask: (task: T) => void;
 }
 
-function TaskList<T>({ visible, tasks }: Props<T>) {
+function TaskList<T>({ visible, tasks, addTask }: Props<T>) {
   const handleClick = () => {
-    console.log('hello');
+    console.log(tasks);
+    const newTask: T = { title: 'a', desc: 'b', isDone: false };
+    addTask(newTask);
   };
 
   if (!visible) return <></>;

@@ -11,6 +11,8 @@ interface Props<T> {
 }
 
 function Task<T>({ task }: Props<T>) {
+  const handleClick = () => {};
+
   return (
     <Card sx={{ minWidth: '10vw' }}>
       <CardContent>
@@ -24,7 +26,11 @@ function Task<T>({ task }: Props<T>) {
         <Typography variant="body2">{task.desc}</Typography>
       </CardContent>
       <CardActions>
-        <Button variant={task.isDone ? 'contained' : 'outlined'} size="small">
+        <Button
+          onClick={handleClick}
+          variant={task.isDone ? 'contained' : 'outlined'}
+          size="small"
+        >
           {task.isDone ? 'already done' : 'not done'}
         </Button>
       </CardActions>
