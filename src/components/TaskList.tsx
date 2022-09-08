@@ -1,6 +1,8 @@
 import { Paper, Card, Grid, Button } from '@mui/material';
 import Task from './Task';
+import Form from './Form';
 import AddOutlinedIcon from '@mui/icons-material/AddOutlined';
+import { useState } from 'react';
 
 interface Props<T> {
   visible: boolean;
@@ -9,10 +11,14 @@ interface Props<T> {
 }
 
 function TaskList<T>({ visible, tasks, addTask }: Props<T>) {
-  const handleClick = () => {
-    console.log(tasks);
-    const newTask: T = { title: 'a', desc: 'b', isDone: false };
-    addTask(newTask);
+  const [isActive, setIsActive] = useState(false);
+  const handleClick = (e: any) => {
+    e.stopPropagation();
+    setIsActive(() => !isActive);
+  };
+
+  const handleBlur = (e: any) => {
+    setIsActive(() => false);
   };
 
   if (!visible) return <></>;
@@ -27,8 +33,8 @@ function TaskList<T>({ visible, tasks, addTask }: Props<T>) {
         ))}
         <Grid item>
           <Card sx={cardStyle}>
-            <Button sx={buttonStyle} onClick={handleClick}>
-              <AddOutlinedIcon />
+            <Button onBlur={handleBlur} sx={buttonStyle} onClick={handleClick}>
+              {isActive ? <Form onSubmit={addTask} /> : <AddOutlinedIcon />}
             </Button>
           </Card>
         </Grid>

@@ -35,6 +35,7 @@ const data: Task[] = [
 ];
 
 function App() {
+  // rate가 꼭 state로 존재해야 하는가?
   const [rate, setRate] = useState(0);
   const [visible, setVisible] = useState(false);
   const [tasks, setTasks] = useState(data);
@@ -44,7 +45,7 @@ function App() {
   }, []);
 
   const handleClick = () => {
-    setVisible(!visible);
+    setVisible(() => !visible);
   };
 
   const addTask = (newTask: Task) => {
