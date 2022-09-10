@@ -5,7 +5,7 @@ import ProgressBar from './components/ProgressBar';
 import TaskList from './components/TaskList';
 import getDoneRate from './util/getDoneRate';
 
-interface Task {
+export interface Task {
   title: string;
   desc: string;
   isDone: boolean;
@@ -49,6 +49,7 @@ function App() {
   };
 
   const addTask = (newTask: Task) => {
+    console.log(newTask);
     setTasks(() => [...tasks, newTask]);
   };
 

@@ -1,23 +1,22 @@
 import { Paper, Card, Grid, Button } from '@mui/material';
 import Task from './Task';
-import Form from './Form';
-import AddOutlinedIcon from '@mui/icons-material/AddOutlined';
 import { useState } from 'react';
+import AddOutlined from '@mui/icons-material/AddOutlined';
+import TaskForm from './Form';
 
 interface Props<T> {
   visible: boolean;
   tasks: T[];
-  addTask: (task: T) => void;
+  addTask: () => void;
 }
 
 function TaskList<T>({ visible, tasks, addTask }: Props<T>) {
   const [isActive, setIsActive] = useState(false);
-  const handleClick = (e: any) => {
-    e.stopPropagation();
-    setIsActive(() => !isActive);
+  const handleClick = () => {
+    setIsActive(() => true);
   };
 
-  const handleBlur = (e: any) => {
+  const handleBlur = () => {
     setIsActive(() => false);
   };
 
@@ -33,9 +32,13 @@ function TaskList<T>({ visible, tasks, addTask }: Props<T>) {
         ))}
         <Grid item>
           <Card sx={cardStyle}>
-            <Button onBlur={handleBlur} sx={buttonStyle} onClick={handleClick}>
-              {isActive ? <Form onSubmit={addTask} /> : <AddOutlinedIcon />}
-            </Button>
+            {isActive ? (
+              <TaskForm onBlur={handleBlur} onSubmit={addTask} />
+            ) : (
+              <Button onClick={handleClick} sx={buttonStyle}>
+                <AddOutlined />
+              </Button>
+            )}
           </Card>
         </Grid>
       </Grid>
