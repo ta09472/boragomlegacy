@@ -2,16 +2,11 @@ import { Box } from '@mui/material';
 import { useEffect, useState } from 'react';
 import BasicButton from './components/BasicButton';
 import ProgressBar from './components/ProgressBar';
-import TaskList from './components/TaskList';
+import TaskBoard from './components/TaskBoard';
+import { TaskType } from './interface/task';
 import getDoneRate from './util/getDoneRate';
 
-export interface Task {
-  title: string;
-  desc: string;
-  isDone: boolean;
-}
-
-const data: Task[] = [
+const data: TaskType[] = [
   {
     title: 'apple',
     desc: '사과를 먹는다.',
@@ -48,7 +43,7 @@ function App() {
     setVisible(() => !visible);
   };
 
-  const addTask = (newTask: Task) => {
+  const addTask = (newTask: TaskType) => {
     console.log(newTask);
     setTasks(() => [...tasks, newTask]);
   };
@@ -57,7 +52,7 @@ function App() {
     <Box sx={style}>
       <ProgressBar rate={rate} />
       <BasicButton textContent="hello" onClick={handleClick} />
-      <TaskList visible={visible} tasks={tasks} addTask={addTask} />
+      <TaskBoard visible={visible} tasks={tasks} addTask={addTask} />
     </Box>
   );
 }

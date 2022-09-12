@@ -1,15 +1,14 @@
 import { Button, TextField } from '@mui/material';
 import Box from '@mui/material/Box';
-import { Task } from '../App';
 import { useState } from 'react';
+import { TaskType } from '../interface/task';
 
 interface Props {
-  onBlur: () => void;
-  onSubmit: (value: Task) => void;
+  onSubmit: (value: TaskType) => void;
 }
 
-function TaskForm({ onBlur, onSubmit }: Props) {
-  const [input, setInput] = useState<Task>({
+function TaskForm({ onSubmit }: Props) {
+  const [input, setInput] = useState<TaskType>({
     title: 'falsea',
     desc: 'sad',
     isDone: false,
